@@ -1,0 +1,137 @@
+[apply]
+    ignoreWhitespace = change
+
+[core]
+    editor = nvim
+    autocrlf = input
+    excludefile = $XDG_CONFIG_HOME/git/.gitignore-global
+    pager = diff-so-fancy | less --tabs=4 -SRFX --mouse
+
+[alias]
+    root = rev-parse --show-toplevel
+    out = log --branches --not --remotes
+
+    # branch
+    ba = branch --all -vv
+    brdd = branch --delete --force
+
+    # commit
+    ci = commit
+    cim = commit --amend
+    cllfd = clean -fd
+
+    # checkout
+    co = checkout
+    cob = checkout -b
+
+    # diff
+    df = diff
+    dfn = diff --name-only
+    dfs = diff --stat
+
+    fc = fetch
+    fct = fetch --tags
+    fcp = fetch --prune
+    fcpt = fetch --prune --tags
+
+    lg = log --color --graph --date-order --pretty=format:'%C(bold magenta)%h %C(reset)-%C(auto)%d %C(reset)%s %C(blue)<%an> %C(reset)%C(green)%ar%C(cyan)(%ad)' --date=iso8601-strict
+    ll = log --color --graph --date-order --pretty=format:'\
+        %C(auto)%d%C(yellow)%B%n\
+        %C(ul)Hash:%C(reset) %C(bold magenta)%H%n\
+        %C(ul)Author:%C(reset) %C(blue)%an<%ae> %C(reset)%C(green)%ar%C(cyan)(%ad)%n\
+        %C(ul)Committer:%C(reset) %C(blue)%cn<%ce> %C(reset)%C(green)%cr%C(cyan)(%cd)%n\
+        '  --stat --date=iso8601-strict
+    lp = log --color --graph --date-order --pretty=format:'\
+        %C(auto)%d%C(yellow)%B%n\
+        %C(ul)Hash:%C(reset) %C(bold magenta)%H%n\
+        %C(ul)Author:%C(reset) %C(blue)%an<%ae> %C(reset)%C(green)%ar%C(cyan)(%ad)%n\
+        %C(ul)Committer:%C(reset) %C(blue)%cn<%ce> %C(reset)%C(green)%cr%C(cyan)(%cd)%n\
+        '  --stat --date=iso8601-strict --patch
+
+    # merge
+    mg = merge
+    mgn = merge --no-ff
+    mgs = merge --squash
+    mgt = mergetool
+
+    pl = pull
+    plr = pull --rebase
+    pso = push origin
+
+    rb = rebase
+    rbc = rebase --continue
+    rbs = rebase --skip
+
+    st = status --short --branch
+
+    throw = reset --hard HEAD
+    unstage = reset --soft HEAD --   # fileName here
+
+    sr = !git log --grep
+    cosr = "!f() { \
+        git co `git sr $1 --format=format:"%H"`; \
+    }; f"
+    ptcr = "!f() { \
+        git show `git sr $1 --format=format:"%H"` > ~/Desktop/$1.patch; \
+    }; f"
+
+[diff]
+    tool = vimdiff
+    mnemonicprefix = true
+    algorithm = histogram
+
+[color]
+    ui = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    diff = auto
+
+[color "diff"]
+    meta = yellow bold
+    commit = magenta bold
+    frag = cyan bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[push]
+    default = simple
+    rebase = true
+    followTags = true
+    autoSetupRemote = true
+
+[pull]
+    rebase = false
+
+[grep]
+    lineNumber = true
+
+[rerere]
+    enabled = true
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[init]
+    defaultBranch = main
+
+[interactive]
+    diffFilter = diff-so-fancy --patch
+
+[user]
+    name=Raghav Aggarwal
+    email=raghavaggarwal03.ra@gmail.com
+    signingkey=raghavaggarwal03.ra@gmail.com
+
+[commit]
+    gpgsign=true
+    verbose=true
+    template=$XDG_CONFIG_HOME/git/.gitmessage
+
+[tag]
+    gpgSign=true
+
+; [includeIf "gitdir:~/Desktop/opensource/"]
+;     path = $XDG_CONFIG_HOME/git/.gitconfig-personal

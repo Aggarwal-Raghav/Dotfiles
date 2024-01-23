@@ -1,0 +1,12 @@
+[user]
+    name=Raghav Aggarwal
+    email=raghavaggarwal03.ra@gmail.com
+    signingkey=raghavaggarwal03.ra@gmail.com
+
+[commit]
+    gpgsign=true
+    verbose=true
+    template=$XDG_CONFIG_HOME/git/.gitmessage
+
+[tag]
+    gpgSign=true
