@@ -133,5 +133,6 @@
 [tag]
     gpgSign=true
 
+
 ; [includeIf "gitdir:~/Desktop/opensource/"]
 ;     path = $XDG_CONFIG_HOME/git/.gitconfig-personal
