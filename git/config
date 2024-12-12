@@ -14,11 +14,11 @@
     # branch
     ba = branch --all -vv
     brdd = branch --delete --force
+    bb = !$XDG_CONFIG_HOME/git/scripts/better-branch.sh
+    bwc = blame -w -C -C -C
 
     # commit
-    ci = commit
     cim = commit --amend
-    cllfd = clean -fd
 
     # checkout
     co = checkout
@@ -54,13 +54,10 @@
     mgs = merge --squash
     mgt = mergetool
 
-    pl = pull
     plr = pull --rebase
-    pso = push origin
+    pso = push --force-with-lease origin
 
     rb = rebase
-    rbc = rebase --continue
-    rbs = rebase --skip
 
     st = status --short --branch
 
@@ -108,7 +105,7 @@
     lineNumber = true
 
 [rerere]
-    enabled = true
+	enabled = true
 
 [merge]
     tool = vimdiff
@@ -128,7 +125,6 @@
 [commit]
     gpgsign=true
     verbose=true
-    template=$XDG_CONFIG_HOME/git/.gitmessage
 
 [tag]
     gpgSign=true
