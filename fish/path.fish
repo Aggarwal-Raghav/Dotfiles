@@ -79,3 +79,10 @@ set -x PATH $PATH $PROTOC/bin
 #########################
 set -x VISUAL nvim
 set -x EDITOR nvim
+
+########
+# RUST #
+########
+set -x RUSTUP_HOME $XDG_CONFIG_HOME/.rustup
+set -x CARGO_HOME $XDG_CONFIG_HOME/.cargo
+set -x PATH $PATH $CARGO_HOME/bin

@@ -1,0 +1,25 @@
+window-decoration = true
+
+macos-option-as-alt = true
+
+## Theme
+theme = Dracula+
+font-family = Monaco Nerd Font Mono
+font-size = 14
+
+
+cursor-style = block
+cursor-style-blink = false
+
+clipboard-read = "allow"
+clipboard-paste-protection = false
+copy-on-select = true
+clipboard-trim-trailing-spaces = true
+
+bold-is-bright = true
+
+
+desktop-notifications = true
+auto-update = download
+
+keybind = cmd+shift+space=toggle_quick_terminal
