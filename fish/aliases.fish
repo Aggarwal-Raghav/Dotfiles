@@ -26,7 +26,7 @@ alias rsync='rsync -hauvzPb --suffix=_bkp'
 
 alias env='env | sort -nr' 
 
-alias reload!='. $XDG_CONFIG_HOME/fish/config.fish'
+alias reload!='. $XDG_CONFIG_HOME/fish/conf.d/config.fish'
 alias e-path='vi $XDG_CONFIG_HOME/fish/path.fish'
 
 alias gradle='noti gradle'
