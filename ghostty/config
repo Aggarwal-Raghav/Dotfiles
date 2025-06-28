@@ -27,7 +27,7 @@ desktop-notifications = true
 auto-update = download
 
 # keymaps
-keybind = global:cmd+`=toggle_quick_terminal
+keybind = global:cmd+shift+space=toggle_quick_terminal
 keybind = cmd+shift+left=move_tab:-1
 keybind = cmd+shift+right=move_tab:+1
 keybind = cmd+left=previous_tab
