@@ -12,9 +12,9 @@ set -x PATH $(brew --prefix)/opt/python@3.12/libexec/bin $PATH
 # java17 path #
 ###############
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8/Contents/Home
-set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
+# set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-23.jdk/Contents/Home
-# set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home
+set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home
 set -x PATH $JAVA_HOME/bin $PATH
 
 #########

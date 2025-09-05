@@ -4,7 +4,7 @@
 [core]
     editor = nvim
     autocrlf = input
-    excludefile = $XDG_CONFIG_HOME/git/.gitignore-global
+    excludesfile = $XDG_CONFIG_HOME/git/.gitignore-global
     pager = diff-so-fancy | less --tabs=4 -SRFX --mouse
 
 [alias]

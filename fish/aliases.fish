@@ -17,6 +17,7 @@ alias venv!='. ~/.venv/bin/activate.fish'
 alias cls='clear'
 
 alias ls='lsd -alh --color always'
+alias lsr='lsd -alhrt --color always'
 
 # rmtrash
 alias del='trash'
@@ -32,3 +33,6 @@ alias e-path='vi $XDG_CONFIG_HOME/fish/path.fish'
 alias gradle='noti gradle'
 alias make='noti make'
 alias mvn='noti mvn'
+
+alias qbuild='mvn clean install -DskipTests -Pdist -Drat.skip=true -Dmaven.javadoc.skip'
+alias fbuild='mvn clean install -DskipTests -PerrorProne,dist,itests,qsplits -Drat.skip=true -Dmaven.javadoc.skip'
