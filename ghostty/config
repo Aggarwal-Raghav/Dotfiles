@@ -20,7 +20,7 @@ bold-is-bright = true
 window-inherit-working-directory = false
 window-save-state = always
 window-height = 200
-window-width = 500
+window-width = 178
 working-directory = home
 
 
@@ -34,6 +34,7 @@ quick-terminal-animation-duration = 0
 
 desktop-notifications = true
 auto-update = download
+auto-update-channel = tip
 
 scrollback-limit = 1000000000
 resize-overlay = never

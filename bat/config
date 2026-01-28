@@ -9,7 +9,7 @@
 # Enable this to use italic text on the terminal. This is not supported on all
 # terminal emulators (like tmux, by default):
 --italic-text=always
---style="plain"
+# --style="plain"
 --pager="less -FR --mouse"
 --map-syntax h:cpp
 
