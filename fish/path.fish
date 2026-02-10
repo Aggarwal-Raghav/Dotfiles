@@ -39,12 +39,12 @@ set -x PATH $PATH $SUBLIME_HOME/bin
 #######################
 # ripgrep config path #
 #######################
-set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_PATH/ripgrep/config
+set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 
 ####################
 # wget config path #
 ####################
-set -x WGETRC $XDG_CONFIG_PATH/wget/config
+set -x WGETRC $XDG_CONFIG_HOME/wget/config
 
 #######
 # FZF #
