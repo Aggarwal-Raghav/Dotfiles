@@ -23,4 +23,3 @@ trust_server_names = on
 no_parent = on
 
 # Setting this to off make wget not download /robots.txt file
-reobots = off

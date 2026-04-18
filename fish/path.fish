@@ -14,13 +14,14 @@ set -x PATH $(brew --prefix python)/libexec/bin $PATH
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8/Contents/Home
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
 set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home
+# set -x JAVA_HOME /opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home/
 set -x PATH $JAVA_HOME/bin $PATH
 
 #########
 # maven #
 #########
 set -x MAVEN_OPTS "-Dspring.profiles.active=local"
-set -x M2_HOME $(brew --prefix)/Cellar/maven/3.9.12/libexec
+set -x M2_HOME $(brew --prefix)/opt/maven/libexec
 set -x M2_REPO $HOME/.m2/repository
 
 ##########
@@ -86,3 +87,4 @@ set -x EDITOR nvim
 set -x RUSTUP_HOME $XDG_CONFIG_HOME/.rustup
 set -x CARGO_HOME $XDG_CONFIG_HOME/.cargo
 set -x PATH $PATH $CARGO_HOME/bin
+

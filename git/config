@@ -6,7 +6,7 @@
     autocrlf = input
     # env varibale for excludesfile doesn't work
     excludesfile = /Users/raghav/.config/git/.gitignore-global
-    pager = diff-so-fancy | less --tabs=4 -SRFX --mouse
+    pager = delta | less --tabs=4 -SRFX --mouse
 
 [alias]
     root = rev-parse --show-toplevel
@@ -110,13 +110,18 @@
 
 [merge]
     tool = vimdiff
-    conflictstyle = diff3
+    conflictstyle = zdiff3
+
+[delta]
+    navigate = true
+    line-numbers = true
+    syntax-theme = Dracula
 
 [init]
     defaultBranch = main
 
 [interactive]
-    diffFilter = diff-so-fancy --patch
+    diffFilter = delta --color-only
 
 [user]
     name=Raghav Aggarwal
