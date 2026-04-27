@@ -2,6 +2,7 @@ astyle
 automake
 bat
 btop
+buf
 cmatrix
 coreutils
 cowsay
@@ -18,17 +19,22 @@ gcc
 gemini-cli
 gh
 git
+git-delta
 gitleaks
 gnu-getopt
 gnupg
 go
 graphviz
+hadolint
 htop
 hugo
 isort
 jq
 lsd
+markdownlint-cli
 maven
+mermaid-cli
+minisign
 neovim
 noti
 openjdk@17
@@ -53,4 +59,5 @@ tree
 tree-sitter-cli
 watch
 wget
+yamllint
 zookeeper

@@ -40,7 +40,7 @@ scrollback-limit = 1000000000
 resize-overlay = never
 
 # keymaps
-keybind = global:cmd+shift+space=toggle_quick_terminal
+keybind = global:cmd+`=toggle_quick_terminal
 
 keybind = cmd+shift+left=move_tab:-1
 keybind = cmd+shift+right=move_tab:+1

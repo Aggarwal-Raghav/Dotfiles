@@ -1,0 +1,24 @@
+version: 1
+git_protocol: ssh
+editor: nvim
+prompt: enabled
+prefer_editor_prompt: disabled
+color_labels: enabled
+pager:
+aliases:
+    # Navigation & Quick Views
+    rv: repo view --web
+    pv: pr view --web
+    iv: issue view --web
+    # Daily PR Workflows
+    co: pr checkout
+    prs: pr list --author "@me"
+    reviews: search prs --review-requested="@me" --state=open
+    ci: pr checks --watch
+    diff: pr diff --color always
+    # Fast Approvals & Merges
+    lgtm: pr review --approve -b "LGTM +1"
+    land: pr merge --squash --delete-branch
+    sync-fork: !gh repo sync && git fetch --all --prune
+http_unix_socket:
+browser: open -a "Google Chrome"
