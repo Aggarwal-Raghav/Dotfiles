@@ -1,6 +1,7 @@
 astyle
 automake
 bat
+boxes
 btop
 buf
 cmatrix
@@ -12,11 +13,12 @@ dockerfmt
 dos2unix
 fastfetch
 fd
+figlet
 fish
+fortune
 fx
 fzf
 gcc
-gemini-cli
 gh
 git
 git-delta
@@ -39,6 +41,7 @@ neovim
 noti
 openjdk@17
 openjdk@21
+openjdk@25
 pinentry-mac
 pkgconf
 python@3.12

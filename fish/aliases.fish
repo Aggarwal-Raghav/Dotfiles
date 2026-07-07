@@ -36,3 +36,4 @@ alias mvn='noti mvn'
 
 alias qbuild='mvn clean install -DskipTests -Pdist -Drat.skip=true -Dmaven.javadoc.skip'
 alias fbuild='mvn clean install -DskipTests -PerrorProne,dist,itests,qsplits -Drat.skip=true -Dmaven.javadoc.skip'
+alias shfmt='shfmt -w -i 2 -ci -bn -sr'

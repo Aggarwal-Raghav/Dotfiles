@@ -14,8 +14,11 @@ set -x PATH $(brew --prefix python)/libexec/bin $PATH
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8/Contents/Home
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
 set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home
-# set -x JAVA_HOME /opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home/
+# set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-25.jdk/Contents/Home
 set -x PATH $JAVA_HOME/bin $PATH
+
+
+set -x PATH $PATH $HOME/.local/bin
 
 #########
 # maven #
