@@ -1,24 +1,24 @@
 ####################
 # personal scripts #
 ####################
-set -x PATH $PATH $HOME/.local/personal/bin
+fish_add_path --append $HOME/.local/personal/bin
 
 ########################
 # python3.12 brew path #
 ########################
-set -x PATH $(brew --prefix python)/libexec/bin $PATH
+fish_add_path $(brew --prefix python)/libexec/bin
 
 ###############
 # java17 path #
 ###############
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8/Contents/Home
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home/
-set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home
+set -gx JAVA_HOME (/usr/libexec/java_home -v 21)
 # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-25.jdk/Contents/Home
-set -x PATH $JAVA_HOME/bin $PATH
+fish_add_path $JAVA_HOME/bin
 
 
-set -x PATH $PATH $HOME/.local/bin
+fish_add_path --append $HOME/.local/bin
 
 #########
 # maven #
@@ -32,13 +32,7 @@ set -x M2_REPO $HOME/.m2/repository
 ##########
 set -x GRADLE_HOME $HOME/Desktop/software/gradle
 set -x GRADLE_OPTS "-Dgradle.user.home=$XDG_CACHE_HOME/gradle"
-set -x PATH $GRADLE_HOME/bin $PATH
-
-#####################
-# sublime text path #
-#####################
-set -l SUBLIME_HOME $HOME/Desktop/personal/software/Sublime-Text.app/Contents/SharedSupport
-set -x PATH $PATH $SUBLIME_HOME/bin
+fish_add_path $GRADLE_HOME/bin
 
 #######################
 # ripgrep config path #
@@ -50,15 +44,6 @@ set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 ####################
 set -x WGETRC $XDG_CONFIG_HOME/wget/config
 
-#######
-# FZF #
-#######
-set -x FZF_DEFAULT_COMMAND 'fd --type f --color=never --hidden'
-set -x FZF_DEFAULT_OPTS '--no-height'
-set -x FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
-set -x FZF_CTRL_T_OPTS "--preview 'bat --color=always --line-range :50 {}'"
-set -x FZF_ALT_C_COMMAND 'fd --type d . --color=never --hidden'
-set -x FZF_ALT_C_OPTS "--preview 'tree -C {} | head -50'"
 
 #########
 # pager #
@@ -75,7 +60,7 @@ set -x GNUPGHOME $XDG_CONFIG_HOME/gpg
 # protoc #
 ##########
 set -l PROTOC $HOME/Desktop/software/protoc
-set -x PATH $PATH $PROTOC/bin
+fish_add_path --append $PROTOC/bin
 
 
 #########################
@@ -89,5 +74,5 @@ set -x EDITOR nvim
 ########
 set -x RUSTUP_HOME $XDG_CONFIG_HOME/.rustup
 set -x CARGO_HOME $XDG_CONFIG_HOME/.cargo
-set -x PATH $PATH $CARGO_HOME/bin
+fish_add_path --append $CARGO_HOME/bin
 

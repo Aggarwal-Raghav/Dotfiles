@@ -13,7 +13,7 @@ alias vim='nvim'
 # alias python='python3.12'
 # alias pip='pip3'
 
-alias venv!='. ~/.venv/bin/activate.fish'
+alias venv!='source ~/.venv/bin/activate.fish'
 alias cls='clear'
 
 alias ls='lsd -alh --color always'
@@ -27,7 +27,7 @@ alias rsync='rsync -hauvzPb --suffix=_bkp'
 
 alias env='env | sort -nr' 
 
-alias reload!='. $XDG_CONFIG_HOME/fish/conf.d/config.fish'
+alias reload!='source $XDG_CONFIG_HOME/fish/conf.d/config.fish'
 alias e-path='vi $XDG_CONFIG_HOME/fish/path.fish'
 
 alias gradle='noti gradle'

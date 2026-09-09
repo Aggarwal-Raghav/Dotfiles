@@ -1,0 +1,20 @@
+# Fisher
+/functions/fisher.fish
+/completions/fisher.fish
+
+# autopair.fish
+/functions/_autopair_*.fish
+/conf.d/autopair.fish
+
+# getopts.fish
+/functions/getopts.fish
+
+# colored_man_pages.fish
+/functions/cless.fish
+/functions/man.fish
+
+# fzf.fish
+/functions/_fzf_*.fish
+/functions/fzf_*.fish
+/conf.d/fzf.fish
+/completions/fzf_*.fish

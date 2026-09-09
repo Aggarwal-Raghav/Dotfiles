@@ -116,3 +116,6 @@ local.properties
 ### VisualStudioCode ###
 .vscode/
 *.code-workspace
+
+# Fish auto-generated universal variables
+fish_variables

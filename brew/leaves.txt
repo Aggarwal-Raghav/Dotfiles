@@ -1,3 +1,4 @@
+act
 astyle
 automake
 bat
@@ -33,6 +34,7 @@ hugo
 isort
 jq
 lsd
+lynx
 markdownlint-cli
 maven
 mermaid-cli
@@ -49,7 +51,6 @@ ripgrep
 ruff
 shellcheck
 shfmt
-sqlfluff
 starship
 stow
 telnet
@@ -64,3 +65,4 @@ watch
 wget
 yamllint
 zookeeper
+zoxide
