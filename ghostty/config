@@ -1,58 +1,67 @@
-## Theme
+## Appearance & Theme
 theme = Dracula+
+bold-is-bright = true
+resize-overlay = never
 
 ## Font
 font-family = Monaco Nerd Font Mono
 font-size = 14
 
+## Cursor & Mouse
 cursor-style = block
 cursor-style-blink = false
+cursor-click-to-move = true
 mouse-hide-while-typing = true
-quit-after-last-window-closed = true
 
-clipboard-read = "allow"
-clipboard-paste-protection = false
-copy-on-select = clipboard
-clipboard-trim-trailing-spaces = true
-
-bold-is-bright = true
-
-window-inherit-working-directory = false
+## Window & Workspace
 window-save-state = always
 window-height = 200
 window-width = 178
+quit-after-last-window-closed = true
+window-inherit-working-directory = false
 working-directory = home
 
-
+## macOS Specific
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 macos-option-as-alt = true
 macos-non-native-fullscreen = visible-menu
 
+## Quick Terminal
 quick-terminal-position = top
 quick-terminal-animation-duration = 0
 
+## Clipboard & Selection
+clipboard-read = "allow"
+clipboard-paste-protection = false
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+
+## System & Behavior
+scrollback-limit = 1000000000
 desktop-notifications = true
 auto-update = download
 auto-update-channel = tip
 
-scrollback-limit = 1000000000
-resize-overlay = never
-
-# keymaps
+## Keybinds
+# Global
 keybind = global:cmd+opt+`=toggle_quick_terminal
 
+# Tabs
+keybind = cmd+shift+t=prompt_tab_title
+keybind = cmd+left=previous_tab
+keybind = cmd+right=next_tab
 keybind = cmd+shift+left=move_tab:-1
 keybind = cmd+shift+right=move_tab:+1
 
-keybind = cmd+left=previous_tab
-keybind = cmd+right=next_tab
-
+# Splits Navigation
 keybind = cmd+opt+left=goto_split:left
 keybind = cmd+opt+down=goto_split:bottom
 keybind = cmd+opt+up=goto_split:top
 keybind = cmd+opt+right=goto_split:right
+keybind = cmd+shift+z=toggle_split_zoom
 
+# Splits Resizing
 keybind = opt+shift+h=resize_split:left,10
 keybind = opt+shift+j=resize_split:down,10
 keybind = opt+shift+k=resize_split:up,10
