@@ -18,6 +18,8 @@
 
 # Don't print lines longer than this limit
 --max-columns=10000
+# Print the truncated match instead of hiding it completely
+--max-columns-preview
 
 # Because who cares about case!?
 --smart-case
