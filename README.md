@@ -34,3 +34,11 @@ If you forgot to clone this repository with the `--recursive` flag, your `nvim` 
 ```bash
 git submodule update --init --recursive
 ```
+
+### Terminal Tips & Tricks:
+
+Because this setup uses `bat` for code highlighting and enables `--mouse` scrolling in `less`, standard mouse copying behaves a bit differently.
+
+* **Selecting text inside `less` or `bat`:** By default, mouse clicks are captured for scrolling. To highlight and copy text normally, hold **`Shift`** while clicking and dragging.
+* **Ignoring line numbers:** To copy code without accidentally copying `bat`'s line numbers or grid lines, hold the **`Option (⌥)`** key while dragging to perform a rectangular block selection.
+* **Combining both:** Hold **`Shift + Option (⌥)`** while dragging to perform a rectangular selection inside a `bat`/`less` window!
