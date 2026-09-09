@@ -76,3 +76,4 @@ set -x RUSTUP_HOME $XDG_CONFIG_HOME/.rustup
 set -x CARGO_HOME $XDG_CONFIG_HOME/.cargo
 fish_add_path --append $CARGO_HOME/bin
 
+set -x CURL_HOME $XDG_CONFIG_HOME/curl
