@@ -9,81 +9,135 @@
     pager = diff-so-fancy | less --tabs=4 -SRFX --mouse
 
 [alias]
-    root = rev-parse --show-toplevel
-    out = log --branches --not --remotes
-
-    # branch
-    ba = branch --all -vv
-    brdd = branch --delete --force
-    bb = !$XDG_CONFIG_HOME/git/scripts/better-branch.sh
+    # --- Status & Inspection ---
+    st = status -sb --show-stash
+    ss = show --stat
     bwc = blame -w -C -C -C
 
-    # commit
-    cim = commit --amend
+    # --- Branch Navigation & Switching ---
+    bl = branch -vv --sort=-committerdate
+    brm = branch --delete --force
+    bb = !$XDG_CONFIG_HOME/git/scripts/better-branch.sh
+    sw = switch
+    swc = switch -c
+    swt = "!f() { \
+        if [ -z \"$1\" ]; then echo \"Usage: git swt <tag-name> [new-branch-name]\" >&2; return 1; fi; \
+        tag=\"$1\"; \
+        branch=\"${2:-$(echo \"$tag\" | sed 's|^rel/||')}\"; \
+        git switch -c \"$branch\" \"$tag\"; \
+    }; f"
 
-    # checkout
-    co = checkout
-    cob = checkout -b
+    # --- Commit & Amend ---
+    ca = commit --amend
+    cane = commit --amend --no-edit
 
-    # diff
+    # --- Diffs ---
     df = diff
-    dfn = diff --name-only
     dfs = diff --stat
+    dfc = diff --cached
+    dfw = diff -w
 
-    fc = fetch
-    fct = fetch --tags
-    fcp = fetch --prune
-    fcpt = fetch --prune --tags
+    # --- Logs & Visualization ---
+    lg = log --color --graph --date-order --pretty=graph --date=iso8601-strict
+    ll = log --color --graph --date-order --pretty=details --stat --date=iso-strict
 
-    lg = log --color --graph --date-order --pretty=format:'%C(bold magenta)%h %C(reset)-%C(auto)%d %C(reset)%s %C(blue)<%an> %C(reset)%C(green)%ar%C(cyan)(%ad)' --date=iso8601-strict
-    ll = log --color --graph --date-order --pretty=format:'\
-        %C(auto)%d%C(yellow)%B%n\
-        %C(ul)Hash:%C(reset) %C(bold magenta)%H%n\
-        %C(ul)Author:%C(reset) %C(blue)%an<%ae> %C(reset)%C(green)%ar%C(cyan)(%ad)%n\
-        %C(ul)Committer:%C(reset) %C(blue)%cn<%ce> %C(reset)%C(green)%cr%C(cyan)(%cd)%n\
-        '  --stat --date=iso8601-strict
-    lp = log --color --graph --date-order --pretty=format:'\
-        %C(auto)%d%C(yellow)%B%n\
-        %C(ul)Hash:%C(reset) %C(bold magenta)%H%n\
-        %C(ul)Author:%C(reset) %C(blue)%an<%ae> %C(reset)%C(green)%ar%C(cyan)(%ad)%n\
-        %C(ul)Committer:%C(reset) %C(blue)%cn<%ce> %C(reset)%C(green)%cr%C(cyan)(%cd)%n\
-        '  --stat --date=iso8601-strict --patch
+    # --- Commit Message Search (Grep) ---
+    sr = "!f() { \
+        all=\"\"; \
+        format=\"graph\"; \
+        pattern=\"\"; \
+        extra=(); \
+        while [ $# -gt 0 ]; do \
+            case \"$1\" in \
+                -a|--all) all=\"--all\"; shift ;; \
+                -f|--full|-v|--verbose) format=\"details\"; shift ;; \
+                -n) extra+=(\"$1\" \"$2\"); shift 2 ;; \
+                -*) extra+=(\"$1\"); shift ;; \
+                *) \
+                    if [ -z \"$pattern\" ]; then \
+                        pattern=\"$1\"; \
+                    else \
+                        extra+=(\"$1\"); \
+                    fi; \
+                    shift ;; \
+            esac; \
+        done; \
+        if [ -z \"$pattern\" ]; then \
+            echo \"Usage: git sr [-a|--all] [-f|--full] <pattern> [git-log-flags]\" >&2; return 1; \
+        fi; \
+        git log --color --date-order --extended-regexp -i $all --pretty=\"$format\" --grep=\"$pattern\" \"${extra[@]}\"; \
+    }; f"
+    srf = "!f() { git sr -f \"$@\"; }; f"
 
-    # merge
-    mg = merge
-    mgn = merge --no-ff
-    mgs = merge --squash
-    mgt = mergetool
-
-    plr = pull --rebase
+    # --- Sync, Fetch & Remote ---
+    fc = fetch --all --tags --prune
+    sync = "!f() { \
+        target=\"${1:-upstream/master}\"; \
+        if ! git rev-parse --verify --quiet \"$target\" >/dev/null && git rev-parse --verify --quiet \"upstream/$target\" >/dev/null; then \
+            target=\"upstream/$target\"; \
+        fi; \
+        git fc && git rebase \"$target\"; \
+    }; f"
     pso = push --force-with-lease origin
+    pto = push --tags --prune origin
+    rso = "!f() { \
+        branch=$(git branch --show-current); \
+        if [ -z \"$branch\" ]; then \
+            echo \"Error: Not on a branch (detached HEAD)\" >&2; return 1; \
+        fi; \
+        echo \"Fetching origin/$branch and resetting...\"; \
+        git fetch origin \"$branch\" && git reset --hard \"origin/$branch\"; \
+    }; f"
+    rpo = remote prune origin
 
+    # --- Rebase & Conflict Resolution ---
     rb = rebase
+    rbi = rebase -i
+    rbc = rebase --continue
+    rba = rebase --abort
+    rbs = rebase --skip
 
-    st = status --short --branch
-
+    # --- Undo & Resets ---
     throw = reset --hard HEAD
-    unstage = reset --soft HEAD --   # fileName here
+    uncommit = reset --soft HEAD~1
+    unstage = restore --staged
 
-    sr = !git log --grep
-    cosr = "!f() { \
-        git co `git sr $1 --format=format:"%H"`; \
+    # --- Release & Containment Archaeology ---
+    ft = "!f() { \
+        commit=\"${1:-HEAD}\"; \
+        tag=$(git describe --tags --contains \"$commit\" 2>/dev/null | sed 's/[~^].*//'); \
+        if [ -z \"$tag\" ]; then \
+            tag=$(git tag --sort=version:refname --contains \"$commit\" | head -n 1); \
+        fi; \
+        echo \"$(git log -1 --format='%h: %s' \"$commit\")\"; \
+        if [ -n \"$tag\" ]; then \
+            echo \"First released in: $tag\"; \
+        else \
+            echo \"Status: Unreleased (not in any tag yet)\"; \
+        fi; \
     }; f"
-    ptcr = "!f() { \
-        git show `git sr $1 --format=format:"%H"` > ~/Desktop/$1.patch; \
+    at = tag --sort=creatordate --contains
+    ab = "!f() { \
+        commit=\"${1:-HEAD}\"; \
+        echo \"Branches containing $(git log -1 --format='%h: %s' \"$commit\"):\"; \
+        git branch -a --contains \"$commit\" | grep -v 'dependabot'; \
     }; f"
+    tf = "!git at"
+    fb = "!git ab"
+
+[pretty]
+    graph = "%C(bold magenta)%h %C(reset)-%C(auto)%d %C(reset)%s %C(blue)<%an> %C(reset)%C(green)%ar%C(cyan)(%ad)"
+    details = "%C(bold yellow)commit %H%C(reset)%C(auto)%d%C(reset)%nAuthor:    %C(blue)%an <%ae>%C(reset) %C(green)(%ar)%C(reset)%nDate:      %C(cyan)%ad%C(reset)%n%n%C(yellow)%B%C(reset)"
 
 [diff]
     tool = vimdiff
     mnemonicprefix = true
     algorithm = histogram
+    colorMoved = default
+    renames = copies
 
 [color]
     ui = auto
-    status = auto
-    branch = auto
-    interactive = auto
-    diff = auto
 
 [color "diff"]
     meta = yellow bold
@@ -95,18 +149,26 @@
 
 [push]
     default = simple
-    rebase = true
     followTags = true
     autoSetupRemote = true
 
+[fetch]
+    prune = true
+
 [pull]
-    rebase = false
+    rebase = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
 
 [grep]
     lineNumber = true
 
 [rerere]
-	enabled = true
+    enabled = true
+    autoUpdate = true
 
 [merge]
     tool = vimdiff
@@ -119,17 +181,13 @@
     diffFilter = diff-so-fancy --patch
 
 [user]
-    name=Raghav Aggarwal
-    email=raghavaggarwal03.ra@gmail.com
-    signingkey=raghavaggarwal03.ra@gmail.com
+    name = Raghav Aggarwal
+    email = raghavaggarwal03.ra@gmail.com
+    signingkey = raghavaggarwal03.ra@gmail.com
 
 [commit]
-    gpgsign=true
-    verbose=true
+    gpgsign = true
+    verbose = true
 
 [tag]
-    gpgSign=true
-
-
-; [includeIf "gitdir:~/Desktop/opensource/"]
-;     path = $XDG_CONFIG_HOME/git/.gitconfig-personal
+    gpgSign = true
